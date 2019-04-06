@@ -1,5 +1,6 @@
 package com.pfe.municipal.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,32 +24,30 @@ public class PayementServiceImpl implements PayementService{
 	
 	@Override
 	public void add(Payement payement) {
-		// TODO Auto-generated method stub
-		
+		payement.setDate_ajout(LocalDate.now());
+		payement.setDate_modification(LocalDate.now());
+		dao.save(payement);
 	}
 
 	@Override
 	public void update(Payement payement) {
-		// TODO Auto-generated method stub
-		
+		payement.setDate_modification(LocalDate.now());
+		dao.save(payement);
 	}
 
 	@Override
 	public void delete(UUID id) {
-		// TODO Auto-generated method stub
-		
+		dao.deleteById(id);
 	}
 
 	@Override
 	public Optional<Payement> find(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findById(id);
 	}
 
 	@Override
 	public List<Payement> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 }

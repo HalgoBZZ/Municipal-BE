@@ -1,5 +1,6 @@
 package com.pfe.municipal.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,12 +23,15 @@ public class CompteServiceImpl implements CompteService{
 	
 	@Override
 	public void add(Compte compte) {
+		compte.setDate_ajout(LocalDate.now());
+		compte.setDate_modification(LocalDate.now());
 		dao.save(compte);
 		
 	}
 
 	@Override
 	public void update(Compte compte) {
+		compte.setDate_modification(LocalDate.now());
 		dao.save(compte);
 	}
 

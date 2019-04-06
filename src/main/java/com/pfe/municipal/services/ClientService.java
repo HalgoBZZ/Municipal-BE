@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import ch.qos.logback.core.net.server.Client;
+import com.pfe.municipal.entities.Client;
+
+
 
 public interface ClientService {
 	

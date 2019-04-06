@@ -1,5 +1,6 @@
 package com.pfe.municipal.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,11 +23,14 @@ public class ContratServiceImpl implements ContratService {
 	
 	@Override
 	public void add(Contrat contrat) {
+		contrat.setDate_ajout(LocalDate.now());
+		contrat.setDate_modification(LocalDate.now());
 		dao.save(contrat);
 	}
 
 	@Override
 	public void update(Contrat contrat) {
+		contrat.setDate_modification(LocalDate.now());
 		dao.save(contrat);
 		
 	}

@@ -1,5 +1,6 @@
 package com.pfe.municipal.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -10,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pfe.municipal.dao.ClientDao;
+import com.pfe.municipal.entities.Client;
 import com.pfe.municipal.services.ClientService;
 
-import ch.qos.logback.core.net.server.Client;
 
 @Service
 @Transactional
@@ -23,12 +24,15 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public void add(Client client) {
+		client.setDate_ajout(LocalDate.now());
+		client.setDate_modification(LocalDate.now());
 		dao.save(client);
 		
 	}
 
 	@Override
 	public void update(Client client) {
+		client.setDate_modification(LocalDate.now());
 		dao.save(client);
 	}
 

@@ -1,5 +1,6 @@
 package com.pfe.municipal.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,32 +23,30 @@ public class ProprieteServiceImpl implements ProprieteService{
 
 	@Override
 	public void add(Propriete propriete) {
-		// TODO Auto-generated method stub
-		
+		propriete.setDate_ajout(LocalDate.now());
+		propriete.setDate_modification(LocalDate.now());
+		dao.save(propriete);
 	}
 
 	@Override
 	public void update(Propriete propriete) {
-		// TODO Auto-generated method stub
-		
+		propriete.setDate_modification(LocalDate.now());
+		dao.save(propriete);
 	}
 
 	@Override
 	public void delete(UUID id) {
-		// TODO Auto-generated method stub
-		
+		dao.deleteById(id);
 	}
 
 	@Override
 	public Optional<Propriete> find(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findById(id);
 	}
 
 	@Override
 	public List<Propriete> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 	

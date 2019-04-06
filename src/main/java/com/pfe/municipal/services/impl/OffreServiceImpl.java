@@ -1,5 +1,6 @@
 package com.pfe.municipal.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,32 +23,30 @@ public class OffreServiceImpl implements OffreService{
 	
 	@Override
 	public void add(Offre offre) {
-		// TODO Auto-generated method stub
-		
+		offre.setDate_ajout(LocalDate.now());
+		offre.setDate_modification(LocalDate.now());
+		dao.save(offre);
 	}
 
 	@Override
 	public void update(Offre offre) {
-		// TODO Auto-generated method stub
-		
+		offre.setDate_modification(LocalDate.now());
+		dao.save(offre);
 	}
 
 	@Override
 	public void delete(UUID id) {
-		// TODO Auto-generated method stub
-		
+		dao.deleteById(id);
 	}
 
 	@Override
 	public Optional<Offre> find(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findById(id);
 	}
 
 	@Override
 	public List<Offre> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 }

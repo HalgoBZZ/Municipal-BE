@@ -1,5 +1,6 @@
 package com.pfe.municipal.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,32 +23,30 @@ public class NotificationServiceImpl implements NotificationService{
 	
 	@Override
 	public void add(Notification notification) {
-		// TODO Auto-generated method stub
-		
+		notification.setDate_ajout(LocalDate.now());
+		notification.setDate_modification(LocalDate.now());
+		dao.save(notification);
 	}
 
 	@Override
 	public void update(Notification notification) {
-		// TODO Auto-generated method stub
-		
+		notification.setDate_modification(LocalDate.now());
+		dao.save(notification);
 	}
 
 	@Override
 	public void delete(UUID id) {
-		// TODO Auto-generated method stub
-		
+		dao.deleteById(id);
 	}
 
 	@Override
 	public Optional<Notification> find(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findById(id);
 	}
 
 	@Override
 	public List<Notification> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 }
