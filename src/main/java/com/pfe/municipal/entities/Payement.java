@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pfe.municipal.entities.type.Etat;
 
 @Entity
@@ -49,13 +51,15 @@ public class Payement implements Serializable{
 	@Column(name="modification")
 	private LocalDate date_modification;
 	
-	@OneToMany
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="payement")
 	private List<Avertissement> avertissements = new ArrayList<>();
 	
 	@ManyToOne
 	private Contrat contrat;
 	
-	@OneToMany
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="payement")
 	private List<Notification> notifications = new ArrayList<>();
 	
 

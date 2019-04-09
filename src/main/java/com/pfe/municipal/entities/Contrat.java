@@ -2,8 +2,11 @@ package com.pfe.municipal.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="contrat")
@@ -45,8 +50,9 @@ public class Contrat implements Serializable{
 	@Column(name="modification")
 	private LocalDate date_modification;
 
-	@OneToMany
-	private Payement payement;
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="contrat")
+	private List<Payement> payements = new ArrayList<>();
 	
 	@OneToOne
 	private Propriete propriete;
@@ -124,12 +130,12 @@ public class Contrat implements Serializable{
 		this.date_modification = date_modification;
 	}
 
-	public Payement getPayement() {
-		return payement;
+	public List<Payement> getPayement() {
+		return payements;
 	}
 
-	public void setPayement(Payement payement) {
-		this.payement = payement;
+	public void setPayement(List<Payement> payements) {
+		this.payements = payements;
 	}
 
 	public Propriete getPropriete() {

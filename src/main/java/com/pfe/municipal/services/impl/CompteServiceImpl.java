@@ -50,5 +50,10 @@ public class CompteServiceImpl implements CompteService{
 		return dao.findAll();
 	}
 
+	@Override
+	public Optional<Compte> findByEmail(String email) {
+		return dao.findByEmail(email);
+	}
+
 	
 }

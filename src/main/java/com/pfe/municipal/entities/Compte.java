@@ -48,7 +48,7 @@ public class Compte implements Serializable{
 	@Column(name="ajout")
 	protected LocalDate date_ajout;
 	
-	@Column(name="modifie")
+	@Column(name="modification")
 	protected LocalDate date_modification;
 	
 

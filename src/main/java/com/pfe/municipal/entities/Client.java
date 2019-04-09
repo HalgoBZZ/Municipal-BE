@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pfe.municipal.entities.type.Role;
 
 @Entity
@@ -35,13 +37,15 @@ public class Client extends Compte implements Serializable{
 	@Column(name="cin")
 	private int cin;
 	
-	@OneToMany
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="client")
 	private List<Avertissement> avertissements = new ArrayList<>();
 	
 	@OneToOne
 	private Contrat contrat;
 	
-	@OneToMany
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="client")
 	private List<Propriete> proprietes = new ArrayList<>();
 
 	public Client() {

@@ -48,4 +48,9 @@ public class CompteController {
 	public void delete(@PathVariable("id") UUID id) {
 		service.delete(id);
 	}
+	
+	@GetMapping(value="/findByEmail/{email}")
+	public Optional<Compte> findByEmail(@PathVariable("email") String email) {
+		return service.findByEmail(email);
+	}
 }

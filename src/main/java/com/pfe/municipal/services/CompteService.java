@@ -17,4 +17,6 @@ public interface CompteService {
 	public Optional<Compte> find(UUID id);
 	
 	public List<Compte> findAll();
+	
+	public Optional<Compte> findByEmail(String email);
 }
